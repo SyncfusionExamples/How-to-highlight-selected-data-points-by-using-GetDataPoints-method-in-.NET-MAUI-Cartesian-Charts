@@ -26,7 +26,7 @@
             <chart:NumericalAxis Minimum="50" Maximum="80" Interval="5"/>
         </chart:SfCartesianChart.YAxes>
         <chart:SfCartesianChart.Series>
-            <chart:ScatterSeries ItemsSource="{Binding Data}" XBindingPath="Value" YBindingPath="Size" PointWidth="8" Opacity="0.8" Fill="#FE7A36" PointHeight="8" >
+            <chart:ScatterSeries ItemsSource="{Binding Data}" XBindingPath="XValue" YBindingPath="YValue" PointWidth="8" Opacity="0.8" Fill="#FE7A36" PointHeight="8" >
                 <chart:ScatterSeries.SelectionBehavior>
                     <chart:DataPointSelectionBehavior Type="Multiple"  SelectionBrush="#3652AD"/>
                 </chart:ScatterSeries.SelectionBehavior>
