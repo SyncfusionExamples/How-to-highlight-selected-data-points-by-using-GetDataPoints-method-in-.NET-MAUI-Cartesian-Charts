@@ -13,7 +13,6 @@
 
     <chart:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill" 
                            x:Name="cartesianChart" 
-                           IsTransposed="True"
                            SelectionZoomDelta="Chart_SelectionZoomDelta"
                            SelectionZoomEnd="Chart_SelectionZoomEnd">
 
@@ -31,7 +30,10 @@
         </chart:SfCartesianChart.YAxes>
         
         <chart:SfCartesianChart.Series>
-            <chart:ScatterSeries ItemsSource="{Binding Data}" XBindingPath="XValue" YBindingPath="YValue"  Opacity="0.8" Fill="#FE7A36"  >
+            <chart:ScatterSeries ItemsSource="{Binding Data}" XBindingPath="XValue" YBindingPath="YValue"  
+                                 Opacity="0.8" Fill="#FE7A36" 
+                                 PointWidth="8"
+                                 PointHeight="8">
                 <chart:ScatterSeries.SelectionBehavior>
                     <chart:DataPointSelectionBehavior Type="Multiple"  SelectionBrush="#3652AD"/>
                 </chart:ScatterSeries.SelectionBehavior>
