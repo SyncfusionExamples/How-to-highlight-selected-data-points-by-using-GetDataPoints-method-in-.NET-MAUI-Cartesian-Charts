@@ -1,4 +1,4 @@
-# How-to-highlight-selected-data-points-by-using-GetDataPoints-method-in-.NET-MAUI-Cartesian-Charts
+# How to highlight selected data points by using GetDataPoints method in .NET MAUI Cartesian Charts
 The [.NET MAUI Cartesian Chart](https://www.syncfusion.com/maui-controls/maui-cartesian-charts) provides customization options for enhancing data visualization. One of its key features is the ability to interact with data through the [GetDataPoints](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.CartesianSeries.html#Syncfusion_Maui_Charts_CartesianSeries_GetDataPoints_Microsoft_Maui_Graphics_Rect_) method of the [Cartesian series](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.CartesianSeries.html). This method allows retrieval of data points that lie within a specified rectangular area or within defined X and Y coordinate ranges. This article aims to demonstrate how to highlight selected data points using the **GetDataPoints** method, detailing two effective methods:
 
 ### **Method 1: Custom Rectangular Area Selection**
