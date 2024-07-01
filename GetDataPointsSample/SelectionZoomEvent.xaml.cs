@@ -19,7 +19,6 @@ public partial class SelectionZoomEvent : ContentPage
             {
                 if (series is ScatterSeries scatterSeries)
                 {
-
                     var rect = new Rect(e.ZoomRect.X - cartesianChart.SeriesBounds.Left, e.ZoomRect.Y, e.ZoomRect.Width, e.ZoomRect.Height);
                     var dataPoints = scatterSeries.GetDataPoints(rect);
 
