@@ -129,9 +129,9 @@ This method involves handling selection zoom events to draw a custom rectangle a
 Initialize the  [SelectionZoomDelta](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomDelta) and [SelectionZoomEnd](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomEnd) events in the [SfCartesianChart.](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html) Initialize the [ZoomPanBehavior](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomPanBehavior) and enable selection zoom using the [EnableSelectionZooming](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartZoomPanBehavior.html#Syncfusion_Maui_Charts_ChartZoomPanBehavior_EnableSelectionZooming) API available in [ChartZoomPanBehavior.](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartZoomPanBehavior.html)
  
  ```html
-<chart:SfCartesianChart             
+<chart:SfCartesianChart x:Name="cartesianChart"           
                         SelectionZoomDelta="Chart_SelectionZoomDelta"
-                         SelectionZoomEnd="Chart_SelectionZoomEnd">
+                        SelectionZoomEnd="Chart_SelectionZoomEnd">
 
     <chart:SfCartesianChart.ZoomPanBehavior>
         <chart:ChartZoomPanBehavior EnableSelectionZooming="True" />
@@ -163,33 +163,29 @@ Initialize the  [SelectionZoomDelta](https://help.syncfusion.com/cr/maui/Syncfus
 The [SelectionZoomDelta](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomDelta) event is activated during the process of selecting a region in the chart area. Inside the event handler, retrieve the selecting area rectangle values. Then, use the [GetDataPoints](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.CartesianSeries.html#Syncfusion_Maui_Charts_CartesianSeries_GetDataPoints_Microsoft_Maui_Graphics_Rect_) method to retrieve the data points that fall inside the rectangle. Update the indexes of these data points in the [SelectedIndexes](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartSelectionBehavior.html#Syncfusion_Maui_Charts_ChartSelectionBehavior_SelectedIndex) property of [ChartSelectionBehavior.](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartSelectionBehavior.html)
 
  ```csharp
-private void Chart_SelectionZoomDelta(object sender, ChartSelectionZoomDeltaEventArgs e)
+ private void Chart_SelectionZoomDelta(object sender, ChartSelectionZoomDeltaEventArgs e)
  {
      var selectedIndexes = new List<int>();
 
-     if (cartesianChart is SfCartesianChart)
+     foreach (var series in cartesianChart.Series)
      {
-         foreach (var series in cartesianChart.Series)
+         if (series is ScatterSeries scatterSeries)
          {
-             if (series is ScatterSeries scatterSeries)
-             {
-                 var rect = new Rect(e.ZoomRect.X - cartesianChart.SeriesBounds.Left, e.ZoomRect.Y, e.ZoomRect.Width, e.ZoomRect.Height);
-                 var dataPoints = scatterSeries.GetDataPoints(rect);
+             var rect = new Rect(e.ZoomRect.X - cartesianChart.SeriesBounds.Left, e.ZoomRect.Y, e.ZoomRect.Width, e.ZoomRect.Height);
+             var dataPoints = scatterSeries.GetDataPoints(rect);
 
-                 if (dataPoints != null && viewModel != null)
+             if (dataPoints != null && viewModel != null)
+             {
+                 for (int i = 0; i < viewModel.Data.Count; i++)
                  {
-                     for (int i = 0; i < viewModel.Data.Count; i++)
-                     {
-                         if (dataPoints.Contains(viewModel.Data[i]))
-                             selectedIndexes.Add(i);
-                     }
-                     scatterSeries.SelectionBehavior.SelectedIndexes = selectedIndexes;
+                     if (dataPoints.Contains(viewModel.Data[i]))
+                         selectedIndexes.Add(i);
                  }
+                 scatterSeries.SelectionBehavior.SelectedIndexes = selectedIndexes;
              }
          }
      }
-
- } 
+ }
  ```
 **Step 3: Cancel the zoom**
 The [SelectionZoomEnd](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomEnd) event is invoked when selecting a region from the chart area. Inside the event handler, set the [ZoomFactor](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_ZoomFactor) to 1 and the [ZoomPosition](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_ZoomPosition) to 0. This helps cancel the zoom.
