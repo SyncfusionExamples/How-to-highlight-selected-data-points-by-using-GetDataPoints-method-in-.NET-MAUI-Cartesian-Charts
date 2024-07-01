@@ -1,13 +1,16 @@
 # How to highlight selected data points by using GetDataPoints method in .NET MAUI Cartesian Charts
+
 The [.NET MAUI Cartesian Chart](https://www.syncfusion.com/maui-controls/maui-cartesian-charts) provides customization options for enhancing data visualization. One of its key features is the ability to interact with data through the [GetDataPoints](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.CartesianSeries.html#Syncfusion_Maui_Charts_CartesianSeries_GetDataPoints_Microsoft_Maui_Graphics_Rect_) method of the [Cartesian series](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.CartesianSeries.html). This method allows retrieval of data points that lie within a specified rectangular area or within defined X and Y coordinate ranges. This article aims to demonstrate how to highlight selected data points using the **GetDataPoints** method, detailing two effective methods:
 
 ### **Method 1: Custom Rectangular Area Selection**
  This way handling touch points to draw a custom rectangle and highlight data points that fall within it:
 
 **Step 1:  Create the Extension Class**
+
 Create an extension class inherited from the [ChartInteractiveBehavior](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartInteractiveBehavior.html) class to handle the custom touch interactions on the chart. Define fields for storing the starting and ending coordinates of the touch and a flag to indicate when the rectangle should be shown. Implement the IDrawable interface to draw the selection rectangle. Override the [OnTouchDown](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartBehavior.html#Syncfusion_Maui_Charts_ChartBehavior_OnTouchDown_Syncfusion_Maui_Charts_ChartBase_System_Single_System_Single_), [OnTouchMove](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartBehavior.html#Syncfusion_Maui_Charts_ChartBehavior_OnTouchMove_Syncfusion_Maui_Charts_ChartBase_System_Single_System_Single_), and [OnTouchUp](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartBehavior.html#Syncfusion_Maui_Charts_ChartBehavior_OnTouchUp_Syncfusion_Maui_Charts_ChartBase_System_Single_System_Single_) methods to manage the drawing and selection process.
 
 **OnTouchDown Method :**  Capture the initial touch point when the user touches down on the chart.
+
 **OnTouchMove Method :**  Update the end coordinates of the selection rectangle dynamically.
 
 **OnTouchDown Method :** 
@@ -88,7 +91,9 @@ public class ChartInteractionExt : ChartInteractiveBehavior, IDrawable, INotifyP
 ```
 
 **Step 2: Assign the Extension Class to the Chart**
+
 Assign the ChartInteractionExt class to the [InteractiveBehavior](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartBase.html#Syncfusion_Maui_Charts_ChartBase_InteractiveBehavior) property of the [SfCartesianChart](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html). Define the GraphicsView in the [PlotAreaBackgroundView](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartBase.html#Syncfusion_Maui_Charts_ChartBase_PlotAreaBackgroundView) to handle custom drawing.
+
 **[XAML]**
 ```html
 <chart:SfCartesianChart>
@@ -117,15 +122,17 @@ Assign the ChartInteractionExt class to the [InteractiveBehavior](https://help.s
 ### **Method 2: Selection Zoom Events**
 This method involves handling selection zoom events to draw a custom rectangle and highlight data points that fall within it:
 #### Zoom and Pan Events:
-**[ZoomStart:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomStart)** Triggered when the user initiates a zoom action. Can be canceled to interrupt the action.
-**[ZoomDelta:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomDelta)** Activated during the zooming process and can be canceled.
-**[ZoomEnd:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomEnd)** Triggered when the zooming action finishes.
-**[SelectionZoomStart:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomStart)** Occurs when the user begins box selection zooming.
-**[SelectionZoomDelta:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomDelta)** Activated during the process of selecting a region for zooming and can be canceled.
-**[SelectionZoomEnd:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomEnd)** Triggered after the selection zooming ends.
-**[Scroll:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_Scroll)** Triggered during panning and can be canceled.
+* **[ZoomStart:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomStart)** Triggered when the user initiates a zoom action. Can be canceled to interrupt the action.
+* **[ZoomDelta:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomDelta)** Activated during the zooming process and can be canceled.
+* **[ZoomEnd:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomEnd)** Triggered when the zooming action finishes.
+* **[SelectionZoomStart:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomStart)** Occurs when the user begins box selection zooming.
+* **[SelectionZoomDelta:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomDelta)** Activated during the process of selecting a region for zooming and can be canceled.
+* **[SelectionZoomEnd:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomEnd)** Triggered after the selection zooming ends.
+* **[Scroll:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_Scroll)** Triggered during panning and can be canceled.
+* **[ResetZoom:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ResetZoom)** Triggered after the chart is reset by double-tapping.
 
 **Step 1: Initialize Selection Zoom Events**
+
 Initialize the  [SelectionZoomDelta](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomDelta) and [SelectionZoomEnd](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomEnd) events in the [SfCartesianChart.](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html) Initialize the [ZoomPanBehavior](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomPanBehavior) and enable selection zoom using the [EnableSelectionZooming](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartZoomPanBehavior.html#Syncfusion_Maui_Charts_ChartZoomPanBehavior_EnableSelectionZooming) API available in [ChartZoomPanBehavior.](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartZoomPanBehavior.html)
  
  ```html
@@ -160,6 +167,7 @@ Initialize the  [SelectionZoomDelta](https://help.syncfusion.com/cr/maui/Syncfus
 </chart:SfCartesianChart> 
  ```
 **Step 2: Handle the interaction**
+
 The [SelectionZoomDelta](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_SelectionZoomDelta) event is activated during the process of selecting a region in the chart area. Inside the event handler, retrieve the selecting area rectangle values. Then, use the [GetDataPoints](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.CartesianSeries.html#Syncfusion_Maui_Charts_CartesianSeries_GetDataPoints_Microsoft_Maui_Graphics_Rect_) method to retrieve the data points that fall inside the rectangle. Update the indexes of these data points in the [SelectedIndexes](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartSelectionBehavior.html#Syncfusion_Maui_Charts_ChartSelectionBehavior_SelectedIndex) property of [ChartSelectionBehavior.](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartSelectionBehavior.html)
 
  ```csharp
@@ -188,6 +196,7 @@ The [SelectionZoomDelta](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Cha
  }
  ```
 **Step 3: Cancel the zoom**
+
 The [SelectionZoomEnd](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomEnd) event is invoked when selecting a region from the chart area. Inside the event handler, set the [ZoomFactor](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_ZoomFactor) to 1 and the [ZoomPosition](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_ZoomPosition) to 0. This helps cancel the zoom.
 
  ```csharp
@@ -200,3 +209,9 @@ private void Chart_SelectionZoomEnd(object sender, ChartSelectionZoomEventArgs e
  } 
  ```
  ![Selection_zoom.gif](https://support.syncfusion.com/kb/agent/attachment/article/16174/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0ODUzIiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5zeW5jZnVzaW9uLmNvbSJ9.mcnMg6jPkXsxDZqv152Z1mzVSk-CI-62kO_T0Alylsk)
+
+ ## Troubleshooting
+
+If you are facing a path too long exception when building this example project, close Visual Studio and rename the repository to short and build the project.
+
+For a step by step procedure, refer to the [BenchMark KB article](https://support.syncfusion.com/kb/article/16223/how-to-add-a-benchmark-line-to-thenet-maui-cartesian-chart?isInternalRefresh=False).
