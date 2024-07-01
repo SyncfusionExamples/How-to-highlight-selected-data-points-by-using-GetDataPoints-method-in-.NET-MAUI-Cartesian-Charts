@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:model="clr-namespace:GetDataPointsSample"
+             x:Class="GetDataPointsSample.SelectionZoomEvent"
+             Title="SelectionZoomEvent">
+
+
+    <ContentPage.BindingContext>
+        <model:ScatterSeriesViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <chart:SfCartesianChart HorizontalOptions="Fill" VerticalOptions="Fill" 
+                           x:Name="cartesianChart" 
+                           SelectionZoomDelta="Chart_SelectionZoomDelta"
+                           SelectionZoomEnd="Chart_SelectionZoomEnd">
+
+        <chart:SfCartesianChart.ZoomPanBehavior>
+            <chart:ChartZoomPanBehavior EnableSelectionZooming="True"/>
+        </chart:SfCartesianChart.ZoomPanBehavior>
+        
+        <chart:SfCartesianChart.XAxes>
+            <chart:NumericalAxis x:Name="primaryAxis" Minimum="100" Maximum="220" 
+                                 Interval="20"/>
+        </chart:SfCartesianChart.XAxes>
+        
+        <chart:SfCartesianChart.YAxes>
+            <chart:NumericalAxis x:Name="secondaryAxis" Minimum="50" Maximum="80" Interval="5"/>
+        </chart:SfCartesianChart.YAxes>
+        
+        <chart:SfCartesianChart.Series>
+            <chart:ScatterSeries ItemsSource="{Binding Data}" XBindingPath="XValue" YBindingPath="YValue"  
+                                 Opacity="0.8" Fill="#FE7A36" 
+                                 PointWidth="8"
+                                 PointHeight="8">
+                <chart:ScatterSeries.SelectionBehavior>
+                    <chart:DataPointSelectionBehavior Type="Multiple"  SelectionBrush="#3652AD"/>
+                </chart:ScatterSeries.SelectionBehavior>
+            </chart:ScatterSeries>
+        </chart:SfCartesianChart.Series>
+        
+    </chart:SfCartesianChart>
+
+</ContentPage>
