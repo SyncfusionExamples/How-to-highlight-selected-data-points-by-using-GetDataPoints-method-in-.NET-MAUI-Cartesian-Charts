@@ -8,13 +8,6 @@ public partial class SelectionZoomEvent : ContentPage
     {
         InitializeComponent();
     }
-    private void Chart_SelectionZoomEnd(object sender, ChartSelectionZoomEventArgs e)
-    {
-        primaryAxis.ZoomFactor = 1;
-        primaryAxis.ZoomPosition = 0;
-        secondaryAxis.ZoomFactor = 1;
-        secondaryAxis.ZoomPosition = 0;
-    }
 
     private void Chart_SelectionZoomDelta(object sender, ChartSelectionZoomDeltaEventArgs e)
     {
@@ -44,5 +37,13 @@ public partial class SelectionZoomEvent : ContentPage
         }
 
     }
+    private void Chart_SelectionZoomEnd(object sender, ChartSelectionZoomEventArgs e)
+    {
+        primaryAxis.ZoomFactor = 1;
+        primaryAxis.ZoomPosition = 0;
+        secondaryAxis.ZoomFactor = 1;
+        secondaryAxis.ZoomPosition = 0;
+    }
+
 }
 
