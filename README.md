@@ -214,4 +214,4 @@ private void Chart_SelectionZoomEnd(object sender, ChartSelectionZoomEventArgs e
 
 If you are facing a path too long exception when building this example project, close Visual Studio and rename the repository to short and build the project.
 
-For a step by step procedure, refer to the [BenchMark KB article](https://support.syncfusion.com/kb/article/16223/how-to-add-a-benchmark-line-to-thenet-maui-cartesian-chart?isInternalRefresh=False).
+For a step-by-step procedure, refer to the [How to highlight selected data points using the GetDataPoints method in .NET MAUI Cartesian Charts KB article](https://support.syncfusion.com/kb/article/16174/how-to-highlight-selected-data-points-in-net-maui-cartesian-charts).
